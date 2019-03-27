@@ -1,0 +1,14 @@
+export default {
+    VARCHAR: 'VARCHAR',
+    LONG_VARCHAR: 'LONG_VARCHAR',
+    NUMBER: 'NUMBER',
+    BOOLEAN: 'BOOLEAN',
+    SELECT: 'SELECT',
+    TREE_SELECT: 'TREE_SELECT',
+    HTML: 'HTML',
+    DATE_PICKER: 'DATE_PICKER',
+    IMAGE: 'IMAGE',
+    MEDIA: 'MEDIA',
+    CHINA: 'CHINA',
+    TABLE: 'TABLE'
+}
