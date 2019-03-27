@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/quill.snow.css">
+	<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+	<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+	<script src="http://webapi.amap.com/maps?v=1.4.5&key=您申请的key值"></script>
+
+	<script type="text/javascript" src='http://webapi.amap.com/maps?v=1.4.13&key=389880a06e3f893ea46036f030c94700&plugin=AMap.ToolBar'></script>
+	<!-- UI组件库 1.0 -->
+	<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+	<meta name="keywords" content="总控后台"/>
+	<meta name="description" content="总控后台"/>
+	<title>总控后台</title>
+	<style>
+		#loading {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			right: 0px;
+			bottom: 0px;
+			left: 0px;
+			z-index: 99999;
+			text-align: center;
+			background: #ffffff;
+		}
+
+		.loading-icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -25px;
+			margin-left: -25px;
+			width: 50px;
+			height: 50px;
+			animation: App-logo-spin infinite 20s linear;
+		}
+
+		@keyframes App-logo-spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+<div id="root"></div>
+<div id="loading">
+	<img width="50px" height="50px" src='%PUBLIC_URL%/icon.png' class="loading-icon"/>
+</div>
+<!--
+  This HTML file is a template.
+  If you open it directly in the browser, you will see an empty page.
+
+  You can add webfonts, meta tags, or analytics to this file.
+  The build step will place the bundled scripts into the <body> tag.
+
+  To begin the development, run `npm start`.
+  To create a production bundle, use `npm run build`.
+-->
+</body>
+</html>

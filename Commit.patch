@@ -1,0 +1,298 @@
+Index: src/view/distribution/siteCompanyAccountDetail/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/siteCompanyAccountDetail/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/siteCompanyAccountDetail/Index.js	(date 1531194712601)
+@@ -88,7 +88,7 @@
+                                   buttonIsPrimary: false,
+                                   buttonIsLoad: false,
+                                   buttonOnClick: () => {
+-                                      this.props.handlePush('/product/add');
++                                      this.props.handlePush('/site/company/account/detail/add');
+                                   }
+                               }]}
+ 
+Index: src/view/base/menu/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/base/menu/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/base/menu/Index.js	(date 1531133317940)
+@@ -146,17 +146,6 @@
+                                     formType={FormType.SEARCH}
+                                     formIsMultiCol={true}
+                                     formItemList={[{
+-                                        formItemType: FormItemType.VARCHAR,
+-                                        formItemKey: 'menuParentName',
+-                                        formItemTitle: '父级名称',
+-                                        formItemInitValue: '',
+-                                        formItemPlaceholder: '请输入父级名称',
+-                                        formItemRequired: false,
+-                                        formItemDisabled: false,
+-                                        formItemOnChange: (value) => {
+-
+-                                        }
+-                                    }, {
+                                         formItemType: FormItemType.VARCHAR,
+                                         formItemKey: 'menuName',
+                                         formItemTitle: '菜单名称',
+@@ -186,10 +175,6 @@
+                                      tableSourceStoreLoad={this.props.handleLoad}
+                                      tableRowKey={'menuId'}
+                                      tableColumnList={[{
+-                                         tableColumnKey: 'menuParentName',
+-                                         tableColumnTitle: '父级名称',
+-                                         tableColumnWidth: 0
+-                                     }, {
+                                          tableColumnKey: 'menuName',
+                                          tableColumnTitle: '菜单名称',
+                                          tableColumnWidth: 150
+Index: src/view/base/menu/Detail.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/base/menu/Detail.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/base/menu/Detail.js	(date 1531188460286)
+@@ -25,7 +25,7 @@
+ 
+         this.props.handleRegister(this.refs.cardForm);
+ 
+-        this.refs.cardForm.ref.refs.menuParentNameSelect.handleInitDynamicSelect({
++        this.refs.cardForm.ref.refs.menuParentId.handleInitDynamicSelect({
+             isLoad: true,
+             url: '/menu/admin/v1/select2'
+         }, () => {
+@@ -168,7 +168,7 @@
+                                     formIsMultiCol={false}
+                                     formItemList={[{
+                                         formItemType: FormItemType.SELECT,
+-                                        formItemKey: 'menuParentNameSelect',
++                                        formItemKey: 'menuParentId',
+                                         formItemTitle: '父级名称',
+                                         formItemInitValue: {},
+                                         formItemPlaceholder: '请输入父级名称',
+Index: src/view/distribution/branchCompanyDividend/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/branchCompanyDividend/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/branchCompanyDividend/Index.js	(date 1531201857394)
+@@ -126,7 +126,7 @@
+                                         }
+                                     }, {
+                                         formItemType: FormItemType.VARCHAR,
+-                                        formItemKey: 'customerName',
++                                        formItemKey: 'customerCompanyName',
+                                         formItemTitle: '客户名称',
+                                         formItemInitValue: '',
+                                         formItemPlaceholder: '请输入客户名称',
+@@ -162,7 +162,7 @@
+                                          tableColumnTitle: '分公司名称',
+                                          tableColumnWidth: 150
+                                      }, {
+-                                         tableColumnKey: 'customerName',
++                                         tableColumnKey: 'customerCompanyName',
+                                          tableColumnTitle: '客户名称',
+                                          tableColumnWidth: 150
+                                      }, {
+Index: src/view/distribution/branchCompanyDividend/Detail.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/branchCompanyDividend/Detail.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/branchCompanyDividend/Detail.js	(date 1531200337878)
+@@ -11,6 +11,7 @@
+ import FormType from "../../../emun/FormType";
+ import ButtonType from "../../../emun/ButtonType";
+ import FormItemType from "../../../emun/FormItemType";
++import SelectType from "../../../emun/SelectType";
+ 
+ class Index extends Component {
+     constructor (props) {
+@@ -23,8 +24,30 @@
+         this.props.handleActiveMenu('/branch/company/dividend/index');
+ 
+         this.props.handleRegister(this.refs.cardForm);
++        this.refs.cardForm.ref.refs.company.handleInitDynamicSelect({
++            isLoad: true,
++            url: '/company/admin/v1/select'
++        }, () => {
++            return {}
++        }, () => {
+ 
++        });
++        this.refs.cardForm.ref.refs.branchCompanyNameSelect.handleInitDynamicSelect({
++            isLoad: true,
++            url: '/branch/company/admin/v1/select'
++        }, () => {
++            return {}
++        }, () => {
+ 
++        });
++        this.refs.cardForm.ref.refs.customerNameSelect.handleInitDynamicSelect({
++            isLoad: true,
++            url: '/customer/admin/v1/select'
++        }, () => {
++            return {}
++        }, () => {
++
++        });
+         switch (this.props.match.path) {
+             case '/branch/company/dividend/add':
+                 this.props.handleSetState({
+@@ -159,35 +182,47 @@
+                                     formType={FormType.SUBMIT}
+                                     formIsMultiCol={false}
+                                     formItemList={[{
+-                                        formItemType: FormItemType.VARCHAR,
+-                                        formItemKey: 'companyName',
+-                                        formItemTitle: '总公司名称',
+-                                        formItemInitValue: '',
+-                                        formItemPlaceholder: '请输入总公司名称',
++                                        formItemType: FormItemType.SELECT,
++                                        formItemKey: 'company',
++                                        formItemTitle: '总公司',
++                                        formItemInitValue: {},
++                                        formItemPlaceholder: '请选择总公司',
+                                         formItemRequired: true,
+                                         formItemDisabled: false,
++                                        formLabelInValue: true,
++                                        selectType: SelectType.REMOTE,
++                                        selectKeyName: 'companyId',
++                                        selectValueName: 'companyName',
+                                         formItemOnChange: (value) => {
+ 
+                                         }
+-                                    }, {
+-                                        formItemType: FormItemType.VARCHAR,
+-                                        formItemKey: 'branchCompanyName',
++                                    },{
++                                        formItemType: FormItemType.SELECT,
++                                        formItemKey: 'branchCompanyNameSelect',
+                                         formItemTitle: '分公司名称',
+-                                        formItemInitValue: '',
++                                        formItemInitValue: {},
+                                         formItemPlaceholder: '请输入分公司名称',
+                                         formItemRequired: true,
+                                         formItemDisabled: false,
++                                        formLabelInValue: true,
++                                        selectType: SelectType.REMOTE,
++                                        selectKeyName: 'branchCompanyId',
++                                        selectValueName: 'branchCompanyName',
+                                         formItemOnChange: (value) => {
+ 
+                                         }
+                                     }, {
+-                                        formItemType: FormItemType.VARCHAR,
+-                                        formItemKey: 'customerName',
++                                        formItemType: FormItemType.SELECT,
++                                        formItemKey: 'customerNameSelect',
+                                         formItemTitle: '客户名称',
+-                                        formItemInitValue: '',
++                                        formItemInitValue: {},
+                                         formItemPlaceholder: '请输入客户名称',
+                                         formItemRequired: true,
+                                         formItemDisabled: false,
++                                        formLabelInValue: true,
++                                        selectType: SelectType.REMOTE,
++                                        selectKeyName: 'customerId',
++                                        selectValueName: 'customerCompanyName',
+                                         formItemOnChange: (value) => {
+ 
+                                         }
+Index: src/view/distribution/customer/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/customer/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/customer/Index.js	(date 1531196404280)
+@@ -22,6 +22,13 @@
+         customerId[i] = userInfo.roleSiteList[i].customerId;
+     }
+ }
++
++let siteId=[];
++if(userInfo!=null) {
++    for (var i = 0; i < userInfo.roleSiteList.length; i++) {
++        siteId[i] = userInfo.roleSiteList[i].siteId;
++    }
++}
+ class Index extends Component {
+     constructor (props) {
+         super(props);
+Index: src/common/constant_jibai.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/common/constant_jibai.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/common/constant_jibai.js	(date 1531202065075)
+@@ -2,7 +2,7 @@
+ export default {
+     active: ActiveType.PROD,
+     host: 'http://megoapi.jibaiexpress.com:8088',
+-     //host: 'http://localhost:8080',
++     //host: 'http://localhost:10110',
+     imageHost: 'http://megoapi.jibaiexpress.com:8088',
+    //imageHost: 'http://118.31.229.16:80',
+      //imageHost: 'http://localhost:10040',
+Index: src/view/distribution/customerProvider/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/customerProvider/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/customerProvider/Index.js	(date 1531201212126)
+@@ -18,7 +18,7 @@
+ 
+ let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+ let customerId=[];
+-if(userInfo.length!=null&&userInfo.length>0) {
++if(userInfo !=null &&userInfo.roleSiteList.length>0) {
+     for (var i = 0; i < userInfo.roleSiteList.length; i++) {
+         customerId[i] = userInfo.roleSiteList[i].customerId;
+     }
+Index: src/view/distribution/site/Index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/distribution/site/Index.js	(revision 38a4c915691af887485c7d3e2f7ad80a3b52fbcb)
++++ src/view/distribution/site/Index.js	(date 1531196175037)
+@@ -24,6 +24,20 @@
+         siteId[i] = userInfo.roleSiteList[i].siteId;
+     }
+ }
++
++/*let companyId=[];
++if(userInfo!=null){
++    for(var i=0;i<userInfo.roleSiteList.length;i++ ){
++        companyId[i]=userInfo.roleSiteList[i].companyId;
++    }
++}
++
++let branchCompanyId=[];
++if(userInfo!=null) {
++    for (var i = 0; i < userInfo.roleSiteList.length; i++) {
++        branchCompanyId[i] = userInfo.roleSiteList[i].branchCompanyId;
++    }
++}*/
+ class Index extends Component {
+     constructor (props) {
+         super(props);
+@@ -45,6 +59,8 @@
+                 pageIndex: this.props.store.pageIndex,
+                 pageSize: this.props.store.pageSize,
+                 siteIdList: JSON.stringify(siteId)
++                //companyIdList: JSON.stringify(companyId),
++                //branchCompanyIdList: JSON.stringify(branchCompanyId)
+             }
+         }, (data) => {
+             this.props.dispatch({
